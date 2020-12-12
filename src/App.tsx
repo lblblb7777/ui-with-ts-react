@@ -1,10 +1,6 @@
 import React from "react";
 
 function App() {
-  const a = '123'
-  if (a == '123') {
-    
-  }
   return (
     <div className="App">
       <header className="App-header">
