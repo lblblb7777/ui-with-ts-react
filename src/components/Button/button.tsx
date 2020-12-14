@@ -14,7 +14,7 @@ export enum ButtonType {
 }
 
 interface BaseButtonProps {
-  classNmae?: string,
+  className?: string,
   disabled?: boolean,
   size?: ButtonSize,
   btnType?: ButtonType,
