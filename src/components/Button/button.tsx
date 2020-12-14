@@ -22,16 +22,25 @@ interface BaseButtonProps {
   href?: string
 }
 
-const Button: React.FC<BaseButtonProps> = (props) => {
+// 将自定义的属性和Button原生属性交叉到一起
+type NativeButtonProps = BaseButtonProps & React.ButtonHTMLAttributes<HTMLElement>
+// 将自定义的属性和a标签原生属性交叉到一起
+type AnchorButtonProps = BaseButtonProps & React.AnchorHTMLAttributes<HTMLElement>
+// Paritial将所有属性变成可选的
+export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
+
+const Button: React.FC<ButtonProps> = (props) => {
   const {
     btnType,
+    className,
     disabled,
     size,
     children,
-    href
+    href,
+    ...restProps
   } = props
   // btn, btn-lg, btn-primary
-  const classes = classNames('btn', {
+  const classes = classNames('btn', className, {
     // 模板语法
     [`btn-${btnType}`]: btnType,
     [`btn-${size}`]: size,
@@ -42,6 +51,7 @@ const Button: React.FC<BaseButtonProps> = (props) => {
       <a 
         href = {href}
         className = {classes}
+        {...restProps}
       >
         {children}
       </a>
@@ -51,6 +61,7 @@ const Button: React.FC<BaseButtonProps> = (props) => {
       <button 
         className={classes}
         disabled={disabled}
+        {...restProps}
       >
         {children}
       </button>
