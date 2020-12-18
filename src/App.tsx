@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Menu defaultIndex={0}>
+        <Menu defaultIndex={0} mode="vertical">
           <MenuItem>
             cool link
           </MenuItem>
